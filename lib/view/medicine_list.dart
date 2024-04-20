@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:medicineapp/controller/screen1controller.dart';
 
 class SearchScreen extends StatelessWidget {
   SearchScreen({super.key});
-  final controller = Get.put(Screen1Controller());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +52,7 @@ class SearchScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image: AssetImage(
-                                      controller.images[index],
+                                      'assets/paracetamol-tablets-500-mg-500x500.webp',
                                     ),
                                     fit: BoxFit.cover),
                               ),
@@ -159,14 +157,14 @@ class SearchScreen extends StatelessWidget {
                           ),
                           RichText(
                             text: TextSpan(
-                              text: controller.distance[index],
+                              text: '100m ',
                               style: const TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
                               ),
                               children: [
                                 TextSpan(
-                                  text: controller.distanceContent[index],
+                                  text: 'from your location',
                                   style: const TextStyle(
                                       color: Colors.grey, fontSize: 13),
                                 ),
