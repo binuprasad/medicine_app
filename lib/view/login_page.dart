@@ -5,10 +5,19 @@ import 'package:medicineapp/view/signup_page.dart';
 
 final _formKey = GlobalKey<FormState>();
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
   SignInPage({Key? key}) : super(key: key);
+
+  @override
+  State<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
+
+  bool isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +82,7 @@ class SignInPage extends StatelessWidget {
                       borderColor: Colors.black,
                       validator: (value) {
                         if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                            .hasMatch( value!)) {
+                            .hasMatch(value!)) {
                           return "Email is invalid";
                         }
                         return null;
@@ -87,6 +96,15 @@ class SignInPage extends StatelessWidget {
                     Column(
                       children: [
                         CustomTextField(
+                          suffixIcon: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  isObscure = !isObscure;
+                                });
+                              },
+                              child: isObscure
+                                  ? const Icon(Icons.visibility)
+                                  : const Icon(Icons.visibility_off)),
                           contentPadding: height * 0.01,
                           hintText: '',
                           borderColor: Colors.black,
@@ -161,7 +179,8 @@ class SignInPage extends StatelessWidget {
                                       ..onTap = () {
                                         Navigator.of(context)
                                             .push(MaterialPageRoute(
-                                          builder: (context) => SignUpPage(),
+                                          builder: (context) =>
+                                              const SignUpPage(),
                                         ));
                                       }),
                               ],

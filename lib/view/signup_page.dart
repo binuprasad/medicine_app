@@ -18,30 +18,31 @@ class _SignUpPageState extends State<SignUpPage> {
   final fullnameController = TextEditingController();
 
   bool _isSelected = false;
+  bool isObscure = true;
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/login_background.png'),
-              fit: BoxFit.fill,
-            ),
-          ),
-          child: Padding(
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/login_background.png'),
+          fit: BoxFit.fill,
+        ),
+      ),
+      child: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          resizeToAvoidBottomInset: true,
+          body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             child: Form(
               key: _formKey,
               child: ListView(
-               shrinkWrap: true,
+                shrinkWrap: true,
                 children: [
                   SizedBox(
                     height: height * 0.2,
@@ -106,8 +107,18 @@ class _SignUpPageState extends State<SignUpPage> {
                     style: TextStyle(color: Colors.black),
                   ),
                   CustomTextField(
+                    suffixIcon: InkWell(
+                        onTap: () {
+                          setState(() {
+                            isObscure = !isObscure;
+                          });
+                        },
+                        child: isObscure
+                            ? const Icon(Icons.visibility)
+                            : const Icon(Icons.visibility_off)),
                     contentPadding: height * 0.01,
                     hintText: '',
+                    obscureText: isObscure,
                     borderColor: Colors.black,
                     validator: (value) {
                       if (!RegExp(
@@ -120,8 +131,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     controller: passwordController,
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(
-                        vertical: height * 0.01),
+                    padding: EdgeInsets.symmetric(vertical: height * 0.01),
                     child: Row(
                       children: <Widget>[
                         Material(
@@ -163,7 +173,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                   SizedBox(
-                    height:height * 0.005,
+                    height: height * 0.005,
                   ),
                   Row(
                     children: [
@@ -218,7 +228,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       const Spacer(),
                       OutlinedButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()&&_isSelected == true) {
+                          if (_formKey.currentState!.validate() &&
+                              _isSelected == true) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                   backgroundColor: Colors.black,
@@ -235,9 +246,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         style: OutlinedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
                               vertical: 16, horizontal: 32),
-                          minimumSize: Size(
-                              width * 0.4,
-                              height * 0.04),
+                          minimumSize: Size(width * 0.4, height * 0.04),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           ),

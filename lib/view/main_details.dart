@@ -116,7 +116,7 @@ class _MainDetailsState extends State<MainDetails> {
                             hintText: 'Operating Hour From',
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return 'Operating Hour From cannot be empty';
+                                return 'Field cannot be empty';
                               }
                               return null;
                             },

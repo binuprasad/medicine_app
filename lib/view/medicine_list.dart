@@ -49,7 +49,7 @@ class SearchScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 image: DecorationImage(
                                     image: AssetImage(
                                       'assets/paracetamol-tablets-500-mg-500x500.webp',
@@ -156,16 +156,16 @@ class SearchScreen extends StatelessWidget {
                             ],
                           ),
                           RichText(
-                            text: TextSpan(
+                            text: const TextSpan(
                               text: '100m ',
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
                               ),
                               children: [
                                 TextSpan(
                                   text: 'from your location',
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                       color: Colors.grey, fontSize: 13),
                                 ),
                               ],

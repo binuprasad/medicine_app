@@ -239,6 +239,7 @@ class CustomTextField extends StatefulWidget {
   final Widget? suffixIcon;
   final bool? readOnly;
   final double? contentPadding;
+  final bool? obscureText;
   const CustomTextField({
     Key? key,
     required this.hintText,
@@ -247,7 +248,7 @@ class CustomTextField extends StatefulWidget {
     this.suffixIcon,
     required this.controller,
     this.readOnly,
-    this.contentPadding,
+    this.contentPadding, this.obscureText,
   }) : super(key: key);
 
   @override
@@ -257,33 +258,36 @@ class CustomTextField extends StatefulWidget {
 class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: TextFormField(
-          controller: widget.controller,
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            hintText: ' ${widget.hintText}',
-            hintStyle: const TextStyle(color: Colors.grey),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: const BorderSide(color: Colors.black),
-            ),
-             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: const BorderSide(color: Colors.grey), 
-            ),
-            errorStyle: const TextStyle(color: Colors.red),
-            suffixIcon: widget.suffixIcon,
-            contentPadding: EdgeInsets.symmetric(
-                vertical: widget.contentPadding ??
-                    MediaQuery.of(context).size.height * 0.02),
-          ),
-          validator: widget.validator != null
-              ? (value) => widget.validator!(value)
-              : null,
-          readOnly: widget.readOnly ?? false,
-        ));
+    return TextFormField(
+      controller: widget.controller,
+      obscureText:widget.obscureText??false,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+        hintText: ' ${widget.hintText}',
+        hintStyle: const TextStyle(color: Colors.grey),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: const BorderSide(color: Colors.black),
+        ),
+        
+         focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: const BorderSide(color: Colors.grey), 
+        ),
+        errorStyle: const TextStyle(color: Colors.red),
+        suffixIcon: widget.suffixIcon,
+      
+        contentPadding: EdgeInsets.symmetric(
+            vertical: widget.contentPadding ??
+                MediaQuery.of(context).size.height * 0.02,
+                horizontal: widget.contentPadding ??
+                MediaQuery.of(context).size.width * 0.02),
+      ),
+      validator: widget.validator != null
+          ? (value) => widget.validator!(value)
+          : null,
+      readOnly: widget.readOnly ?? false,
+    );
   }
 }
