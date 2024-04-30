@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:medicineapp/cost/global_key.dart';
 import 'package:medicineapp/view/basic_details.dart';
 
-final _formKey = GlobalKey<FormState>();
+
 
 class MainDetails extends StatefulWidget {
   const MainDetails({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class MainDetails extends StatefulWidget {
 }
 
 class _MainDetailsState extends State<MainDetails> {
+    final GlobalKey<FormState> _formKey = GlobalKeys.generateFormKey();
   final registerController = TextEditingController();
   final fromController = TextEditingController();
   final toController = TextEditingController();

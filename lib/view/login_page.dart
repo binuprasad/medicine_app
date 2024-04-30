@@ -1,9 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:medicineapp/cost/global_key.dart';
 import 'package:medicineapp/view/basic_details.dart';
 import 'package:medicineapp/view/signup_page.dart';
 
-final _formKey = GlobalKey<FormState>();
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key? key}) : super(key: key);
@@ -13,6 +13,7 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+    final GlobalKey<FormState> _formKey = GlobalKeys.generateFormKey();
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();

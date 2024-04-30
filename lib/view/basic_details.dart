@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:medicineapp/cost/global_key.dart';
 
-final _formKey = GlobalKey<FormState>();
+
 
 class BasicDetails extends StatelessWidget {
+    final GlobalKey<FormState> _formKey = GlobalKeys.generateFormKey();
   BasicDetails({Key? key}) : super(key: key);
   final shopnameController = TextEditingController();
   final ownernamController = TextEditingController();
